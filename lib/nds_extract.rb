@@ -99,7 +99,7 @@ def movies_with_directors_set(source)
   movie_array = []
   index = 0
   while index < source.length do
-    movie_array[index] = movies_with_director_key(source[indexsource[index][:movies])
+    movie_array[index] = movies_with_director_key(source[index][:name], source[index][:movies])
     index += 1
   end
   return movie_array
