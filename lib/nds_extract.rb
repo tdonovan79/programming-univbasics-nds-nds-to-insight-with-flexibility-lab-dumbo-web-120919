@@ -59,11 +59,7 @@ def movies_with_director_key(name, movies_collection)
   return movies_collection
 end
 
-test_data = [
-      { :title => "Movie A", :studio => "Alpha Films", :worldwide_gross => 10 },
-      { :title => "Movie B", :studio => "Alpha Films", :worldwide_gross => 30 },
-      { :title => "Movie C", :studio => "Omega Films", :worldwide_gross => 30 }
-    ]
+
 def gross_per_studio(collection)
   # GOAL: Given an Array of Hashes where each Hash represents a movie,
   # return a Hash that includes the total worldwide_gross of all the movies from
@@ -86,10 +82,9 @@ def gross_per_studio(collection)
     end
     index += 1
   end
-  puts studios_totals["Alpha Films"]
   return studios_totals
 end
-gross_per_studio(test_data)
+
 def movies_with_directors_set(source)
   # GOAL: For each director, find their :movies Array and stick it in a new Array
   #
