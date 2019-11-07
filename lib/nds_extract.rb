@@ -1,6 +1,7 @@
 # Provided, don't edit
-require 'directors_database'
-
+require './lib/directors_database'
+require 'pp'
+#pp directors_database
 # A method we're giving you. This "flattens"  Arrays of Arrays so: [[1,2],
 # [3,4,5], [6]] => [1,2,3,4,5,6].
 
@@ -48,9 +49,21 @@ def movies_with_director_key(name, movies_collection)
   # Array of Hashes where each Hash represents a movie; however, they should all have a
   # :director_name key. This addition can be done by using the provided
   # movie_with_director_name method
+  
+  index = 0
+  while index < movies_collection.length do
+    movies_collection[index] = movie_with_director_name(name, movies_collection[index])
+    index += 1
+  end
+  puts movies_collection
+  return movies_collection
 end
 
-
+test_data = [
+      { :title => "Movie A", :studio => "Alpha Films", :worldwide_gross => 10 },
+      { :title => "Movie B", :studio => "Alpha Films", :worldwide_gross => 30 },
+      { :title => "Movie C", :studio => "Omega Films", :worldwide_gross => 30 }
+    ]
 def gross_per_studio(collection)
   # GOAL: Given an Array of Hashes where each Hash represents a movie,
   # return a Hash that includes the total worldwide_gross of all the movies from
@@ -63,8 +76,20 @@ def gross_per_studio(collection)
   #
   # Hash whose keys are the studio names and whose values are the sum
   # total of all the worldwide_gross numbers for every movie in the input Hash
+  index = 0 
+  studios_totals = {}
+  while index < collection.length do
+    if studios_totals[collection[index][:studio]] != nil
+      studios_totals[collection[index][:studio]] =  studios_totals[collection[index][:studio]] + collection[index][:worldwide_gross]
+    else
+     studios_totals[collection[index][:studio]] = collection[index][:worldwide_gross]
+    end
+    index += 1
+  end
+  puts studios_totals["Alpha Films"]
+  return studios_totals
 end
-
+gross_per_studio(test_data)
 def movies_with_directors_set(source)
   # GOAL: For each director, find their :movies Array and stick it in a new Array
   #
@@ -76,6 +101,7 @@ def movies_with_directors_set(source)
   #
   # Array of Arrays containing all of a director's movies. Each movie will need
   # to have a :director_name key added to it.
+  
 end
 
 # ----------------    End of Your Code Region --------------------
